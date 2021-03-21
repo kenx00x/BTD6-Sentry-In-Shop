@@ -1,4 +1,5 @@
 ﻿using Assets.Main.Scenes;
+using Assets.Scripts.Models;
 using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Models.TowerSets;
@@ -9,7 +10,7 @@ using Harmony;
 using Il2CppSystem.Collections.Generic;
 using MelonLoader;
 using System.IO;
-[assembly: MelonInfo(typeof(BTD6_Sentry_In_Shop.Class1), "Sentry In Shop", "1.1.0", "kenx00x")]
+[assembly: MelonInfo(typeof(BTD6_Sentry_In_Shop.Class1), "Sentry In Shop", "1.2.0", "kenx00x")]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 namespace BTD6_Sentry_In_Shop
 {
@@ -76,6 +77,15 @@ namespace BTD6_Sentry_In_Shop
                 }
                 towerModel.cost = SentryCost;
                 towerModel.towerSet = "Support";
+                List<Model> temp = new List<Model>();
+                for (int i = 0; i < towerModel.behaviors.Length; i++)
+                {
+                    if (towerModel.behaviors[i].name != "TowerExpireModel_")
+                    {
+                        temp.Add(towerModel.behaviors[i]);
+                    }
+                }
+                towerModel.behaviors = (UnhollowerBaseLib.Il2CppReferenceArray<Model>)temp.ToArray();
             }
         }
         [HarmonyPatch(typeof(TowerInventory), "Init")]
