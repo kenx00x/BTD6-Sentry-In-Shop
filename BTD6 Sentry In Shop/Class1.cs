@@ -10,7 +10,7 @@ using Harmony;
 using Il2CppSystem.Collections.Generic;
 using MelonLoader;
 using System.IO;
-[assembly: MelonInfo(typeof(BTD6_Sentry_In_Shop.Class1), "Sentry In Shop", "1.2.0", "kenx00x")]
+[assembly: MelonInfo(typeof(BTD6_Sentry_In_Shop.Class1), "Sentry In Shop", "1.3.0", "kenx00x")]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 namespace BTD6_Sentry_In_Shop
 {
@@ -77,6 +77,9 @@ namespace BTD6_Sentry_In_Shop
                 }
                 towerModel.cost = SentryCost;
                 towerModel.towerSet = "Support";
+                towerModel.radius = 6;
+                towerModel.radiusSquared = 36;
+                towerModel.footprint.doesntBlockTowerPlacement = false;
                 List<Model> temp = new List<Model>();
                 for (int i = 0; i < towerModel.behaviors.Length; i++)
                 {
